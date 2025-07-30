@@ -11,7 +11,7 @@ const terminal = document.getElementById('terminal');
 const outputDiv = document.getElementById('output');
 let promptDiv = document.getElementById('prompt');
 let commandText = document.getElementById('command-text');
-const commandInput = document.getElementById('command-input');
+let commandInput = document.getElementById('command-input');
 let currentCommand = '';
 let isTyping = false;
 
@@ -92,7 +92,7 @@ function handleCommand(cmd) {
     }
 }
 
-document.addEventListener('keydown', (e) => {
+function handleKeydown(e) {
     if (isTyping) return;
 
     if (e.key === 'Enter') {
@@ -106,12 +106,9 @@ document.addEventListener('keydown', (e) => {
         commandText.textContent = currentCommand;
         commandInput.value = currentCommand;
     }
-});
+}
 
-commandInput.addEventListener('input', () => {
-    currentCommand = commandInput.value;
-    commandText.textContent = currentCommand;
-});
+document.addEventListener('keydown', handleKeydown);
 
 document.addEventListener('click', () => {
     commandInput.focus();
