@@ -9,8 +9,8 @@ const commands = {
 
 const terminal = document.getElementById('terminal');
 const outputDiv = document.getElementById('output');
-const promptDiv = document.getElementById('prompt');
-const commandText = document.getElementById('command-text');
+let promptDiv = document.getElementById('prompt');
+let commandText = document.getElementById('command-text');
 const commandInput = document.getElementById('command-input');
 let currentCommand = '';
 let isTyping = false;
@@ -19,9 +19,11 @@ function typeCommand(text, callback) {
     isTyping = true;
     let i = 0;
     commandText.textContent = '';
+    commandInput.value = '';
     function type() {
         if (i < text.length) {
             commandText.textContent += text.charAt(i);
+            commandInput.value += text.charAt(i);
             i++;
             setTimeout(type, 100);
         } else {
@@ -50,6 +52,7 @@ function addNewPrompt() {
     promptDiv = newPrompt;
     commandText = newPrompt.querySelector('#command-text');
     currentCommand = '';
+    commandInput.value = '';
     commandInput.focus();
     terminal.scrollTop = terminal.scrollHeight;
 }
@@ -105,15 +108,16 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.addEventListener('click', () => {
-    commandInput.focus();
-});
-
 commandInput.addEventListener('input', () => {
     currentCommand = commandInput.value;
     commandText.textContent = currentCommand;
 });
 
+document.addEventListener('click', () => {
+    commandInput.focus();
+});
+
+// Initialize
 typeCommand('welcome', () => {
     document.getElementById('welcome').classList.add('active');
     commandInput.focus();
