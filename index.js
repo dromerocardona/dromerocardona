@@ -8,18 +8,19 @@ const commands = {
 };
 
 const terminal = document.getElementById('terminal');
-const commandSpan = document.querySelector('.command');
-const sections = document.querySelectorAll('.section');
-let currentCommand = '';
+const outputDiv = document.getElementById('output');
+const promptDiv = document.getElementById('prompt');
+const commandText = document.getElementById('command-text');
+const commandInput = document.getElementById('command-input');
 let isTyping = false;
 
 function typeCommand(text, callback) {
     isTyping = true;
     let i = 0;
-    commandSpan.textContent = '';
+    commandText.textContent = '';
     function type() {
         if (i < text.length) {
-            commandSpan.textContent += text.charAt(i);
+            commandText.textContent += text.charAt(i);
             i++;
             setTimeout(type, 100);
         } else {
@@ -31,59 +32,60 @@ function typeCommand(text, callback) {
 }
 
 function showSection(sectionId) {
-    sections.forEach(section => section.classList.remove('active'));
-    if (sectionId !== 'clear') {
-        document.getElementById(sectionId).classList.add('active');
-        terminal.scrollTop = terminal.scrollHeight;
-    } else {
-        document.getElementById('welcome').classList.add('active');
-    }
+    const section = document.getElementById(sectionId);
+    const clone = section.cloneNode(true);
+    clone.classList.add('active');
+    outputDiv.appendChild(clone);
+    terminal.scrollTop = terminal.scrollHeight;
 }
 
 function handleCommand(cmd) {
+    if (!cmd) return;
+    const promptClone = promptDiv.cloneNode(true);
+    promptClone.querySelector('#command-input').remove();
+    promptClone.querySelector('#command-text').textContent = cmd;
+    outputDiv.appendChild(promptClone);
+
     if (cmd in commands) {
         if (cmd === 'clear') {
-            currentCommand = '';
-            showSection('welcome');
-            addPrompt();
+            outputDiv.innerHTML = '';
+            const welcome = document.getElementById('welcome').cloneNode(true);
+            welcome.classList.add('active');
+            outputDiv.appendChild(welcome);
         } else {
             typeCommand(cmd, () => {
                 showSection(cmd);
-                addPrompt();
             });
         }
     } else {
         typeCommand(cmd, () => {
-            const output = document.createElement('p');
-            output.textContent = `Command not found: ${cmd}. Type 'help' for available commands.`;
-            document.querySelector('.output').appendChild(output);
-            addPrompt();
+            const error = document.createElement('p');
+            error.textContent = `Command not found: ${cmd}. Type 'help' for available commands.`;
+            outputDiv.appendChild(error);
         });
     }
-}
-
-function addPrompt() {
-    const newPrompt = document.createElement('div');
-    newPrompt.className = 'prompt';
-    newPrompt.innerHTML = `user@portfolio:~$ <span class="command"></span>`;
-    document.querySelector('.output').appendChild(newPrompt);
-    commandSpan = newPrompt.querySelector('.command');
-    currentCommand = '';
     terminal.scrollTop = terminal.scrollHeight;
 }
 
-document.addEventListener('keydown', (e) => {
-    if (isTyping) return;
+commandInput.addEventListener('input', () => {
+    commandText.textContent = commandInput.value;
+});
 
+commandInput.addEventListener('keydown', (e) => {
+    if (isTyping) return;
     if (e.key === 'Enter') {
-        handleCommand(currentCommand.trim().toLowerCase());
-    } else if (e.key === 'Backspace') {
-        currentCommand = currentCommand.slice(0, -1);
-        commandSpan.textContent = currentCommand;
-    } else if (e.key.length === 1) {
-        currentCommand += e.key;
-        commandSpan.textContent = currentCommand;
+        const cmd = commandInput.value.trim().toLowerCase();
+        commandInput.value = '';
+        commandText.textContent = '';
+        handleCommand(cmd);
     }
 });
 
-typeCommand('welcome', () => showSection('welcome'));
+document.addEventListener('click', () => {
+    commandInput.focus();
+});
+
+typeCommand('welcome', () => {
+    document.getElementById('welcome').classList.add('active');
+    commandInput.focus();
+});
