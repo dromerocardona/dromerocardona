@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Terminal Portfolio</title>
     <style>
         body {
             background: #000;
@@ -26,8 +26,11 @@
         .prompt {
             color: #0f0;
             margin: 10px 0;
-            display: flex;
-            align-items: center;
+        }
+        .command {
+            display: inline-block;
+            border-right: 2px solid #0f0;
+            animation: blink 0.75s step-end infinite;
         }
         .output {
             margin: 10px 0;
@@ -54,19 +57,11 @@
             animation: glow 2s ease-in-out infinite;
         }
         #command-input {
-            background: transparent;
-            border: none;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            outline: none;
-            width: 100%;
-            caret-color: #0f0;
-            border-right: 2px solid #0f0;
-            animation: blink 0.75s step-end infinite;
-        }
-        #command-input:focus {
-            outline: none;
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -108,9 +103,8 @@
                 <p>- clear: Clear the terminal</p>
             </div>
         </div>
-        <div class="prompt" id="prompt">
-            user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus>
-        </div>
+        <div class="prompt" id="prompt">user@portfolio:~$ <span class="command" id="command-text"></span></div>
+        <input type="text" id="command-input" autocomplete="off">
     </div>
     <script src="index.js"></script>
 </body>
