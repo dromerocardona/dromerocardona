@@ -26,6 +26,8 @@
         .prompt {
             color: #0f0;
             margin: 10px 0;
+            display: flex;
+            align-items: center;
         }
         .command {
             display: inline-block;
@@ -56,12 +58,24 @@
         .glow {
             animation: glow 2s ease-in-out infinite;
         }
+        #command-input {
+            background: transparent;
+            border: none;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+            caret-color: #0f0;
+        }
+        #command-input:focus {
+            outline: none;
+        }
     </style>
 </head>
 <body>
     <div id="terminal">
-        <div class="prompt">user@portfolio:~$ <span class="command"></span></div>
-        <div class="output">
+        <div class="output" id="output">
             <div id="welcome" class="section active">
                 <p class="glow">Welcome to my terminal portfolio!</p>
                 <p>Type 'help' to see available commands.</p>
@@ -96,6 +110,10 @@
                 <p>- work: View my work experience</p>
                 <p>- clear: Clear the terminal</p>
             </div>
+        </div>
+        <div class="prompt" id="prompt">
+            user@portfolio:~$ <span class="command" id="command-text"></span>
+            <input type="text" id="command-input" autocomplete="off" autofocus>
         </div>
     </div>
     <script src="index.js"></script>
