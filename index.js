@@ -9,20 +9,15 @@ const commands = {
 
 const terminal = document.getElementById('terminal');
 const outputDiv = document.getElementById('output');
-let promptDiv = document.getElementById('prompt');
-let commandText = document.getElementById('command-text');
 const commandInput = document.getElementById('command-input');
-let currentCommand = '';
 let isTyping = false;
 
 function typeCommand(text, callback) {
     isTyping = true;
     let i = 0;
-    commandText.textContent = '';
     commandInput.value = '';
     function type() {
         if (i < text.length) {
-            commandText.textContent += text.charAt(i);
             commandInput.value += text.charAt(i);
             i++;
             setTimeout(type, 100);
@@ -43,18 +38,32 @@ function showSection(sectionId) {
 }
 
 function addNewPrompt() {
+    // Append the current input as a static prompt
+    const promptClone = document.createElement('div');
+    promptClone.className = 'prompt';
+    promptClone.textContent = `user@portfolio:~$ ${commandInput.value}`;
+    outputDiv.appendChild(promptClone);
+
+    // Create a new prompt with input field
     const newPrompt = document.createElement('div');
     newPrompt.className = 'prompt';
-    newPrompt.id = 'prompt';
-    newPrompt.innerHTML = `user@portfolio:~$ <span class="command" id="command-text"></span>`;
+    newPrompt.innerHTML = `user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus>`;
     outputDiv.appendChild(newPrompt);
-    promptDiv.remove();
-    promptDiv = newPrompt;
-    commandText = newPrompt.querySelector('#command-text');
-    currentCommand = '';
-    commandInput.value = '';
-    commandInput.focus();
+
+    // Remove old input and update reference
+    commandInput.remove();
+    const newInput = newPrompt.querySelector('#command-input');
+    newInput.focus();
     terminal.scrollTop = terminal.scrollHeight;
+
+    // Update event listener for the new input
+    newInput.addEventListener('input', () => {
+        currentCommand = newInput.value;
+    });
+
+    // Update global reference to the new input
+    commandInput.value = '';
+    window.commandInput = newInput; // Store globally to avoid re-querying
 }
 
 function handleCommand(cmd) {
@@ -62,12 +71,6 @@ function handleCommand(cmd) {
         addNewPrompt();
         return;
     }
-
-    // Append the executed command as a prompt
-    const promptClone = document.createElement('div');
-    promptClone.className = 'prompt';
-    promptClone.textContent = `user@portfolio:~$ ${cmd}`;
-    outputDiv.appendChild(promptClone);
 
     if (cmd in commands) {
         if (cmd === 'clear') {
@@ -96,21 +99,8 @@ document.addEventListener('keydown', (e) => {
     if (isTyping) return;
 
     if (e.key === 'Enter') {
-        handleCommand(currentCommand.trim().toLowerCase());
-    } else if (e.key === 'Backspace') {
-        currentCommand = currentCommand.slice(0, -1);
-        commandText.textContent = currentCommand;
-        commandInput.value = currentCommand;
-    } else if (e.key.length === 1) {
-        currentCommand += e.key;
-        commandText.textContent = currentCommand;
-        commandInput.value = currentCommand;
+        handleCommand(commandInput.value.trim().toLowerCase());
     }
-});
-
-commandInput.addEventListener('input', () => {
-    currentCommand = commandInput.value;
-    commandText.textContent = currentCommand;
 });
 
 document.addEventListener('click', () => {
