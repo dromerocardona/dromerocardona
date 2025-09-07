@@ -1,115 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Portfolio</title>
-    <style>
-        body {
-            background: #000;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            padding: 20px;
-            overflow: hidden;
-        }
-        #terminal {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 2px solid #0f0;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-            height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        .prompt {
-            color: #0f0;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-        }
-        .output {
-            margin: 10px 0;
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-        a {
-            color: #0f0;
-            text-decoration: underline;
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
-            50% { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; }
-            100% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
-        }
-        .glow {
-            animation: glow 2s ease-in-out infinite;
-        }
-        #command-input {
-            background: transparent;
-            border: none;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            outline: none;
-            width: 100%;
-            caret-color: #0f0;
-            border-right: 2px solid #0f0;
-            animation: blink 0.75s step-end infinite;
-        }
-        #command-input:focus {
-            outline: none;
-        }
-    </style>
-</head>
-<body>
-    <div id="terminal">
-        <div class="output" id="output">
-            <div id="welcome" class="section active">
-                <p class="glow">Welcome to my terminal portfolio!</p>
-                <p>Type 'help' to see available commands.</p>
-            </div>
-            <div id="about" class="section">
-                <p class="glow">About Me</p>
-                <p>Hi, I'm [Your Name]! I'm a passionate individual interested in technology, creativity, and innovation.</p>
-                <p>Email: your.email@example.com</p>
-                <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-            </div>
-            <div id="projects" class="section">
-                <p class="glow">Projects</p>
-                <p>- Project 1: A cool web app built with React and Node.js. <a href="https://project1.example.com" target="_blank">View Project</a></p>
-                <p>- Project 2: An AI-powered tool for automating tasks. <a href="https://project2.example.com" target="_blank">View Project</a></p>
-            </div>
-            <div id="interests" class="section">
-                <p class="glow">Interests</p>
-                <p>- Coding: JavaScript, Python, and C++</p>
-                <p>- Gaming: Retro and indie games</p>
-                <p>- Music: Electronic and classical</p>
-            </div>
-            <div id="work" class="section">
-                <p class="glow">Work Experience</p>
-                <p>- Software Developer at Tech Corp (2022-Present)</p>
-                <p>- Intern at Startup Inc (2020-2021)</p>
-            </div>
-            <div id="help" class="section">
-                <p class="glow">Available Commands</p>
-                <p>- about: Display personal information</p>
-                <p>- projects: List my projects</p>
-                <p>- interests: Show my interests</p>
-                <p>- work: View my work experience</p>
-                <p>- clear: Clear the terminal</p>
-            </div>
-        </div>
-        <div class="prompt" id="prompt">user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus></div>
-    </div>
-    <script src="index.js"></script>
-</body>
-</html>
+<style>
+    body {
+        background: #000;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+        margin: 0;
+        padding: 20px;
+        overflow: hidden;
+    }
+    #terminal {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 2px solid #0f0;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        height: 80vh;
+        overflow-y: auto;
+        position: relative;
+    }
+    .prompt {
+        color: #0f0;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+    }
+    .output {
+        margin: 10px 0;
+    }
+    .section {
+        display: none;
+    }
+    .section.active {
+        display: block;
+    }
+    a {
+        color: #0f0;
+        text-decoration: underline;
+    }
+    @keyframes glow {
+        0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
+        50% { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; }
+        100% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
+    }
+    .glow {
+        animation: glow 2s ease-in-out infinite;
+    }
+    #command-input {
+        background: transparent;
+        border: none;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        outline: none;
+        width: 100%;
+        caret-color: #0f0; /* Standard cursor color */
+    }
+    #command-input:focus {
+        outline: none;
+    }
+</style>
