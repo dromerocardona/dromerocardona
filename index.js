@@ -9,7 +9,7 @@ const commands = {
 
 const terminal = document.getElementById('terminal');
 const outputDiv = document.getElementById('output');
-const commandInput = document.getElementById('command-input');
+let commandInput = document.getElementById('command-input');
 let isTyping = false;
 
 function typeCommand(text, callback) {
@@ -52,18 +52,9 @@ function addNewPrompt() {
 
     // Remove old input and update reference
     commandInput.remove();
-    const newInput = newPrompt.querySelector('#command-input');
-    newInput.focus();
+    commandInput = newPrompt.querySelector('#command-input');
+    commandInput.focus();
     terminal.scrollTop = terminal.scrollHeight;
-
-    // Update event listener for the new input
-    newInput.addEventListener('input', () => {
-        currentCommand = newInput.value;
-    });
-
-    // Update global reference to the new input
-    commandInput.value = '';
-    window.commandInput = newInput; // Store globally to avoid re-querying
 }
 
 function handleCommand(cmd) {
