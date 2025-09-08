@@ -22,6 +22,13 @@
             height: 80vh;
             overflow-y: auto;
             position: relative;
+            /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+        }
+        #terminal::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for WebKit browsers */
         }
         .prompt {
             color: #0f0;
