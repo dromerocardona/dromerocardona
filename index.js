@@ -77,21 +77,8 @@ function handleCommand(cmd) {
 
     if (cmd in commands) {
         if (cmd === 'clear') {
-            // Clear the terminal
-            outputDiv.innerHTML = '';
-            // Re-add the welcome section
-            const welcome = document.getElementById('welcome').cloneNode(true);
-            welcome.classList.add('active');
-            outputDiv.appendChild(welcome);
-            // Add a new prompt with input
-            const newPrompt = document.createElement('div');
-            newPrompt.className = 'prompt';
-            newPrompt.innerHTML = `user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus>`;
-            outputDiv.appendChild(newPrompt);
-            // Update commandInput reference
-            commandInput = newPrompt.querySelector('#command-input');
-            commandInput.focus();
-            terminal.scrollTop = terminal.scrollHeight;
+            // Reload the page to reset the terminal
+            location.reload();
         } else {
             typeCommand(cmd, () => {
                 showSection(cmd);
