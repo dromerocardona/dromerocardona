@@ -77,7 +77,7 @@ function handleCommand(cmd) {
 
     const sudoo = cmd.toLowerCase().startsWith('sudo') ? 'sudo' : cmd.toLowerCase();
     if (sudoo) {
-        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
+        const isChrome = /Chrome/.test(navigator.userAgent);
         if (isChrome) {
             setTimeout(() => {
                 window.location.href = 'chrome://inducebrowsercrashforrealz';
