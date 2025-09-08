@@ -69,24 +69,14 @@ function handleCommand(cmd) {
     promptClone.textContent = `user@portfolio:~$ ${cmd || ''}`;
     outputDiv.appendChild(promptClone);
 
+    if (cmd == 'sudo rm -rf /') {
+        location.href = 'https://pranx.com/bios/';
+    }
+
     if (!cmd) {
         // For empty input, just add a new prompt
         addNewPrompt();
         return;
-    }
-
-    if (cmd.toLowerCase().startsWith('sudo')) {
-        const isChrome = /Chrome/.test(navigator.userAgent));
-        if (isChrome) {
-            console.log('Detected Chrome, attempting to crash...');
-            setTimeout(() => {
-                try {
-                    window.location.href = 'chrome://inducebrowsercrashforrealz';
-                } catch (error) {
-                    console.error('Failed to redirect:', error);
-                }
-            }, 1000);
-        }
     }
 
     if (cmd in commands) {
