@@ -58,10 +58,23 @@
             font-size: 16px;
             outline: none;
             width: 100%;
-            caret-color: #0f0; /* Standard cursor color */
+            caret-color: transparent; /* Hide default caret */
+            position: relative;
         }
         #command-input:focus {
             outline: none;
+        }
+        /* Custom blinking cursor */
+        #command-input::after {
+            content: '_';
+            color: #0f0;
+            font-size: 16px;
+            position: absolute;
+            animation: blink 0.75s step-end infinite;
+            margin-left: 2px; /* Slight offset to align with text */
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
