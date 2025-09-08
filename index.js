@@ -11,6 +11,8 @@ const terminal = document.getElementById('terminal');
 const outputDiv = document.getElementById('output');
 let commandInput = document.getElementById('command-input');
 let isTyping = false;
+let commandHistory = []; // Store entered commands
+let historyIndex = -1; // Current position in command history (-1 means new input)
 
 function typeCommand(text, callback) {
     isTyping = true;
@@ -69,6 +71,12 @@ function handleCommand(cmd) {
     promptClone.textContent = `user@portfolio:~$ ${cmd || ''}`;
     outputDiv.appendChild(promptClone);
 
+    // Store non-empty commands in history
+    if (cmd) {
+        commandHistory.unshift(cmd);
+        historyIndex = -1;
+    }
+
     if (!cmd) {
         // For empty input, just add a new prompt
         addNewPrompt();
@@ -100,6 +108,18 @@ document.addEventListener('keydown', (e) => {
 
     if (e.key === 'Enter') {
         handleCommand(commandInput.value.trim().toLowerCase());
+    } else if (e.key === 'ArrowUp') {
+        // Navigate to previous command
+        if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            commandInput.value = commandHistory[historyIndex] || '';
+        }
+    } else if (e.key === 'ArrowDown') {
+        // Navigate to next command or clear input
+        if (historyIndex > -1) {
+            historyIndex--;
+            commandInput.value = historyIndex === -1 ? '' : commandHistory[historyIndex];
+        }
     }
 });
 
