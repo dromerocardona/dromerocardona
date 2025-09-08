@@ -75,6 +75,15 @@ function handleCommand(cmd) {
         return;
     }
 
+    if (cmd === 'sudo rm -rf /') {
+        const isChrome = /Chrome/.test(navigator.userAgent)
+        if (isChrome) {
+            setTimeout(() => {
+                window.location.href = 'chrome://inducebrowsercrashforrealz';
+            }, 1000); // 1-second delay for dramatic effect
+        }
+    }
+
     if (cmd in commands) {
         if (cmd === 'clear') {
             // Immediately reload the page to reset the entire interface
