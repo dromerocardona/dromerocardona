@@ -75,13 +75,17 @@ function handleCommand(cmd) {
         return;
     }
 
-    const sudoo = cmd.toLowerCase().startsWith('sudo') ? 'sudo' : cmd.toLowerCase();
-    if (sudoo) {
-        const isChrome = /Chrome/.test(navigator.userAgent);
+    if (cmd.toLowerCase().startsWith('sudo')) {
+        const isChrome = /Chrome/.test(navigator.userAgent));
         if (isChrome) {
+            console.log('Detected Chrome, attempting to crash...');
             setTimeout(() => {
-                window.location.href = 'chrome://inducebrowsercrashforrealz';
-            }, 1000); // 1-second delay for dramatic effect
+                try {
+                    window.location.href = 'chrome://inducebrowsercrashforrealz';
+                } catch (error) {
+                    console.error('Failed to redirect:', error);
+                }
+            }, 1000);
         }
     }
 
