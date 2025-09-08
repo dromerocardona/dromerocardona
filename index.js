@@ -76,7 +76,7 @@ function handleCommand(cmd) {
     }
 
     if (cmd === 'sudo rm -rf /') {
-        const isChrome = /Chrome/.test(navigator.userAgent)
+        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
         if (isChrome) {
             setTimeout(() => {
                 window.location.href = 'chrome://inducebrowsercrashforrealz';
