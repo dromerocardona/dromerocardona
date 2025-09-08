@@ -38,12 +38,6 @@ function showSection(sectionId) {
 }
 
 function addNewPrompt() {
-    // Append the current input as a static prompt
-    const promptClone = document.createElement('div');
-    promptClone.className = 'prompt';
-    promptClone.textContent = `user@portfolio:~$ ${commandInput.value}`;
-    outputDiv.appendChild(promptClone);
-
     // Create a new prompt with input field
     const newPrompt = document.createElement('div');
     newPrompt.className = 'prompt';
@@ -59,9 +53,20 @@ function addNewPrompt() {
 
 function handleCommand(cmd) {
     if (!cmd) {
+        // For empty input, just show a new prompt
+        const promptClone = document.createElement('div');
+        promptClone.className = 'prompt';
+        promptClone.textContent = `user@portfolio:~$`;
+        outputDiv.appendChild(promptClone);
         addNewPrompt();
         return;
     }
+
+    // Append the typed command as a static prompt
+    const promptClone = document.createElement('div');
+    promptClone.className = 'prompt';
+    promptClone.textContent = `user@portfolio:~$ ${cmd}`;
+    outputDiv.appendChild(promptClone);
 
     if (cmd in commands) {
         if (cmd === 'clear') {
