@@ -38,35 +38,42 @@ function showSection(sectionId) {
 }
 
 function addNewPrompt() {
+    // Remove the current prompt (with input) if it exists
+    const currentPrompt = document.querySelector('.prompt:last-child');
+    if (currentPrompt) {
+        currentPrompt.remove();
+    }
+
     // Create a new prompt with input field
     const newPrompt = document.createElement('div');
     newPrompt.className = 'prompt';
     newPrompt.innerHTML = `user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus>`;
     outputDiv.appendChild(newPrompt);
 
-    // Remove old input and update reference
-    commandInput.remove();
+    // Update commandInput reference
     commandInput = newPrompt.querySelector('#command-input');
     commandInput.focus();
     terminal.scrollTop = terminal.scrollHeight;
 }
 
 function handleCommand(cmd) {
-    if (!cmd) {
-        // For empty input, just show a new prompt
-        const promptClone = document.createElement('div');
-        promptClone.className = 'prompt';
-        promptClone.textContent = `user@portfolio:~$`;
-        outputDiv.appendChild(promptClone);
-        addNewPrompt();
-        return;
+    // Remove the current prompt to avoid duplication
+    const currentPrompt = document.querySelector('.prompt:last-child');
+    if (currentPrompt) {
+        currentPrompt.remove();
     }
 
     // Append the typed command as a static prompt
     const promptClone = document.createElement('div');
     promptClone.className = 'prompt';
-    promptClone.textContent = `user@portfolio:~$ ${cmd}`;
+    promptClone.textContent = `user@portfolio:~$ ${cmd || ''}`;
     outputDiv.appendChild(promptClone);
+
+    if (!cmd) {
+        // For empty input, just add a new prompt
+        addNewPrompt();
+        return;
+    }
 
     if (cmd in commands) {
         if (cmd === 'clear') {
@@ -104,7 +111,5 @@ document.addEventListener('click', () => {
 });
 
 // Initialize
-typeCommand('welcome', () => {
-    document.getElementById('welcome').classList.add('active');
-    commandInput.focus();
-});
+document.getElementById('welcome').classList.add('active');
+addNewPrompt();
