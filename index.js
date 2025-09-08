@@ -77,7 +77,7 @@ function handleCommand(cmd) {
 
     if (cmd in commands) {
         if (cmd === 'clear') {
-            // Reload the page to reset the terminal
+            // Immediately reload the page to reset the entire interface
             location.reload();
         } else {
             typeCommand(cmd, () => {
