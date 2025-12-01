@@ -4,7 +4,7 @@ Languages: Python, C/C++, Arduino, JavaScript/HTML/CSS, DuckyScript
 
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
-- Developing website for Iglesia Cristiana Vida Eterna
+- Learning Dart w/ Flutter framework
 
 ## Past Projects:
 - Cansat Team "Taternauts" Software Subteam Lead
