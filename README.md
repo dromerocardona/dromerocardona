@@ -1,10 +1,14 @@
 # Diego Romero-Cardona
 
-Languages: Python, C/C++, Arduino, JavaScript/HTML/CSS, DuckyScript
+Languages: Python, C/C++, Java, Arduino, JavaScript/HTML/CSS, DuckyScript
+Web Development: Vue, Vuetify, Vite, Electron, Tailwind CSS
 
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
-- Learning Dart w/ Flutter framework
+- Development of the UAH Space Hardware Club's website
+
+## Current Work:
+- Software internship at Verity Integrated Systems
 
 ## Past Projects:
 - Cansat Team "Taternauts" Software Subteam Lead
