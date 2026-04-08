@@ -1,7 +1,7 @@
 # Diego Romero-Cardona
 
-Languages: Python, C/C++, Java, Arduino, JavaScript/HTML/CSS, DuckyScript
-Web Development: Vue, Vuetify, Vite, Electron, Tailwind CSS
+- Languages: Python, C/C++, Java, Arduino, JavaScript/TypeScript, HTML/CSS, DuckyScript, 32-bit ARM Assembly, Dart
+- Web Development/Frameworks: Vue, Vuetify, Vite, Electron, Tailwind CSS, Flutter
 
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
