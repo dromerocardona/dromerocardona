@@ -6,6 +6,7 @@
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
 - Development of the UAH Space Hardware Club's website
+- Development of CanSat Competition website
 
 ## Current Work:
 - Software internship at Verity Integrated Systems
