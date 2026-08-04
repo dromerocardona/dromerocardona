@@ -1,12 +1,12 @@
 # Diego Romero-Cardona
 
 - Languages: Python, C/C++, Java, Arduino, JavaScript/TypeScript, HTML/CSS, DuckyScript, 32-bit ARM Assembly, Dart
-- Web Development/Frameworks: Vue, Vuetify, Vite, Electron, Tailwind CSS, Flutter
+- Web Development/Frameworks: Vue, Vuetify, Vite, Electron, Tailwind CSS, Flutter, Qt6
 
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
 - Development of the UAH Space Hardware Club's website
-- Development of CanSat Competition website
+- C++ GUI development w/ Qt6
 
 ## Current Work:
 - Software internship at Verity Integrated Systems
@@ -21,3 +21,4 @@
   - International Competition June 4-9, 2025
   - Successful Competition Flight June 7
   - 8th place Internationally, 2nd place in the US
+- [Cansat Competition Website](https://cansatcompetition.com/)
