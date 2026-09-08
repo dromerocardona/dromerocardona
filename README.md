@@ -5,7 +5,7 @@
 
 ## Current Projects:
 - Computer Science Major and Mathematics Minor @ University of Alabama in Huntsville
-- Development of the UAH Space Hardware Club's website
+- Development of the UAH [Space Hardware Club's website](https://space.uah.edu)
 - C++ GUI development w/ Qt6
 
 ## Current Work:
