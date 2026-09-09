@@ -1,120 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Portfolio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diego Romero-Cardona</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
     <style>
-        body {
-            background: #000;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            padding: 20px;
-            overflow: hidden;
-        }
-        #terminal {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 2px solid #0f0;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-            height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-        }
-        #terminal::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for WebKit browsers */
-        }
-        .prompt {
-            color: #0f0;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-        }
-        .output {
-            margin: 10px 0;
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-        a {
-            color: #0f0;
-            text-decoration: underline;
-        }
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
-            50% { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0; }
-            100% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; }
-        }
-        .glow {
-            animation: glow 2s ease-in-out infinite;
-        }
-        #command-input {
-            background: transparent;
-            border: none;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            outline: none;
-            width: 100%;
-            caret-color: #0f0; /* Standard cursor color */
-        }
-        #command-input:focus {
-            outline: none;
-        }
+      html {
+        scroll-behavior: smooth;
+        background-color: #1f2937;
+      }
+
+      body {
+        font-family: "Play", sans-serif;
+      }
     </style>
-</head>
-<body>
-    <div id="terminal">
-        <div class="output" id="output">
-            <div id="welcome" class="section active">
-                <p class="glow">Diego Romero-Cardona's Portfolio</p>
-                <p>Type 'help' to see available commands.</p>
-            </div>
-            <div id="about" class="section">
-                <p class="glow">About Me</p>
-                <p>Hello! My name is Diego Romero-Cardona and I am a Computer Science major and Mathematics minor at the University of Alabama in Huntsville.</p>
-                <p>Email: dr0887@uah.edu</p>
-                <p>GitHub: <a href="https://github.com/dromerocardona" target="_blank">https://github.com/dromerocardona</a></p>
-            </div>
-            <div id="projects" class="section">
-                <p class="glow">Projects</p>
-                <p>- Two Month CanSat 2024: I worked as the software lead for a small scale engineering project that focused on the development of a satellite payload.
-		     My task was to develop a ground station to process and visualize the telemetry received from the payload. 
-                     <a href="https://github.com/dromerocardona/TaternautGS" target="_blank">View Project</a></p>
-                <p>- International CanSat Competition: I worked as the software lead for a 10-month long engineering project focused on the development of a satellite 
-                     payload with sensors, GPS, and cameras. I worked on the development of the ground station and contributed significantly to the embedded system of 
-                     the payload. <a href="https://github.com/dromerocardona/COSMOS" target="_blank">View Project</a></p>
-            </div>
-            <div id="interests" class="section">
-                <p class="glow">Interests</p>
-                <p>- Coding: JS/HTML/CSS, Python, C/C++/Arduino, Java, DuckyScript</p>
-                <p>- Gaming: FPS (Doom, Wolfenstein, Battlefront II)</p>
-                <p>- Music: Classic rock, blues, jazz, fusion, metal</p>
-            </div>
-            <div id="work" class="section">
-                <p class="glow">Work Experience</p>
-                <p>- Software Developer Intern @ Verity Integrated Systems (2025-Present)</p>
-            </div>
-            <div id="help" class="section">
-                <p class="glow">Available Commands</p>
-                <p>- about: Display personal information</p>
-                <p>- projects: List my projects</p>
-                <p>- interests: Show my interests</p>
-                <p>- work: View my work experience</p>
-                <p>- clear: Clear the terminal</p>
-            </div>
+  </head>
+  <body>
+    <!-- Menubar -->
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-white text-lg font-semibold"
+          >Diego Romero-Cardona</a
+        >
+        <div>
+          <a href="#about" class="text-gray-300 hover:text-white px-3">About</a>
+          <a href="#projects" class="text-gray-300 hover:text-white px-3"
+            >Projects</a
+          >
+          <a href="#contact" class="text-gray-300 hover:text-white px-3"
+            >Contact</a
+          >
         </div>
-        <div class="prompt" id="prompt">user@portfolio:~$ <input type="text" id="command-input" autocomplete="off" autofocus></div>
-    </div>
-    <script src="index.js"></script>
-</body>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="bg-gray-600" id="about">
+      <div class="bg-gray-900 overflow-hidden border border-gray-700">
+        <div class="p-6 md:p-10 font-mono text-sm md:text-base">
+          <div class="grid md:grid-cols-2 gap-2 items-center">
+            <div>
+              <p class="text-blue-400 font-bold">diego@portfolio</p>
+              <p class="text-gray-500">----------------</p>
+              <p>
+                <span class="text-yellow-400">Education:</span>
+                <span class="text-gray-200"
+                  >Junior Computer Science B.S. & Math minor @ UAH</span
+                >
+              </p>
+              <p>
+                <span class="text-yellow-400">Work:</span>
+                <span class="text-gray-200"
+                  >Software Developer @ Verity Integrated Systems</span
+                >
+              </p>
+              <p>
+                <span class="text-yellow-400">OS:</span>
+                <span class="text-gray-200">Linux, Windows, macOS</span>
+              </p>
+              <p>
+                <span class="text-yellow-400">Languages:</span>
+                <span class="text-gray-200"
+                  >C/C++, Java, Python, JavaScript, ARM Assembly, Dart</span
+                >
+              </p>
+              <p>
+                <span class="text-yellow-400">Editors:</span>
+                <span class="text-gray-200"
+                  >VS Code, Visual Studio, Qt Creator, Vim/Neovim</span
+                >
+              </p>
+              <p>
+                <span class="text-yellow-400">Frameworks:</span>
+                <span class="text-gray-200"
+                  >Vue, Vuetify, Vite, Electron, Tailwind CSS, Flutter,
+                  Qt6</span
+                >
+              </p>
+              <p>
+                <span class="text-yellow-400">GitHub:</span>
+                <span class="text-gray-200">dromerocardona</span>
+              </p>
+              <p class="mt-3">
+                <span class="text-red-400">●</span>
+                <span class="text-yellow-400">●</span>
+                <span class="text-green-400">●</span>
+                <span class="text-blue-800">●</span>
+                <span class="text-blue-400">●</span>
+                <span class="text-purple-400">●</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-10" id="projects">
+      <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-4 text-white">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-gray-500 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-white">Project 1</h3>
+          </div>
+          <div class="bg-gray-500 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-white">Project 2</h3>
+          </div>
+          <div class="bg-gray-500 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-white">Project 3</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="bg-gray-600 py-10" id="contact">
+      <div class="container mx-auto text-center">
+        <a
+          target="_blank"
+          href="mailto:dr0887@uah.edu"
+          class="text-blue-500 hover:text-blue-700 font-bold px-4 rounded"
+        >
+          <i class="fas fa-envelope fa-2x"></i>
+        </a>
+        <a
+          target="_blank"
+          href="https://github.com/dromerocardona"
+          class="text-gray-800 hover:text-gray-900 font-bold px-4 rounded"
+        >
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/dromerocardona/"
+          class="text-blue-500 hover:text-blue-700 font-bold px-4 rounded"
+        >
+          <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+      </div>
+    </section>
+  </body>
 </html>
